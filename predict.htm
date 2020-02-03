@@ -1,0 +1,106 @@
+<html>
+
+<head>
+<title>E. O. Tuck and L. Lazauskas</title>
+</head>
+
+<body bgcolor="#a3d3ff">
+
+
+<h2>3. PREDICTION OF OPTIMAL PARAMETERS</h2>
+
+Once we have a theory that gives reasonable predictions of the total
+resistance, it seems natural to search for &quot;sensible&quot;
+parameter configurations minimising that resistance. Many engineering
+design problems can be cast into the form of optimisation problems. For
+example the problem addressed in this paper can be formulated as<br>
+Minimise the real-valued function
+f(x<sub>1</sub>,x<sub>2</sub>,...,x<sub>n</sub>), with each real
+parameter x<sub>i</sub> subject to (domain) constraints
+a<sub>i</sub>&lt;=x<sub>i</sub>&lt;=b<sub>i</sub> for some real
+constants a<sub>i</sub> and b<sub>i</sub><br>
+<p>
+Many techniques exist for solving optimisation problems such as
+the one described above, however, they vary greatly in efficiency
+and the quality of the final solution for a given number of function
+evaluations. No single technique is best for all design problems.
+Gradient-based methods work well with smooth, unimodal functions, but may
+yield local optima for multimodal functions. Heuristic algorithms can
+increase search efficiency, but at the expense of guaranteed optimality -
+they do not always find the global optimum.
+<p>
+<h3>3.1 Genetic Algorithms (GAs)</h3>
+GAs are adaptive search methods that use heuristics inspired by natural
+population dynamics and the evolution of life. They differ from other
+search and optimisation schemes in four main respects (Dhingra and Lee
+1994):
+<UL>
+<LI>  Search proceeds from a population of points, not from a single
+point.
+<LI> They use a coding of the parameters, not the parameters themselves.
+<LI> Objective function values guide the search process. They do not use
+gradients or other problem-specific information.
+<LI>State transition rules are probabilistic, not deterministic.
+</UL>
+<p>
+In the present study, we use a non-traditional GA similar to Eshelman's
+(1991) <i>CHC</i>, augmented with, among other features, hill-climbing
+routines, cataclysmic restarts and incest prevention. The resulting
+computer program, called &quot;GODZILLA&quot; for <i>Genetic Optimisation
+and Design of Zoomorphs</i>, is described in Lazauskas (1996 in prep.).
+<p>
+<h3>3.2 GODZILLA</h3>
+GODZILLA's general operation can be described quite succintly: create and
+evaluate new (candidate) designs until some termination criterion is met.
+Termination can occur when a certain number of designs have been evaluated,
+or after a prescribed amount of time has elapsed, or when the algorithm
+seems to be making no further progress.
+<p>
+GODZILLA begins the optimisation process by creating an initial population
+of (real-valued) design vectors and calculating the total resistance for
+each design. Initial designs are randomly generated, although the
+population can also be &quot;seeded&quot; with previously found good
+designs.
+<p>
+Genetic operators and hill-climbing operators are used to create candidate
+designs. Genetic operators create new (offspring) vectors from two parent
+vectors in the population, using heuristics inspired by the recombination
+of DNA. There are too many varieties to here discuss individual strengths,
+deficiencies and peculiarities. GODZILLA's primary genetic operator is one
+gleaned from fuzzy set theory described in Voigt et al (1995). After
+evaluating the total resistance of the offspring, GODZILLA replaces the
+worst individual in the population with the offspring if the offspring's
+total resistance is lower. This replacement strategy guarantees that the
+best individual in the population is never replaced by an inferior
+individual.
+<p>
+The method used to select parent vectors from the population can have a
+substantial influence on the performance of GAs. GODZILLA uses <i>binary
+tournament selection</i>. In this method, two individuals are selected
+without replacement from the population. The individual with the lower
+total resistance becomes the first parent. A second binary tournament
+determines the other parent.
+<p>
+One form of hill-climbing operator used by GODZILLA, <i>Stochastic
+Bit-climbing</i>, creates a candidate vector by adding or subtracting
+small increments from each of the parameters of the best design vector
+found so far. This allows the program to explore more closely promising
+regions of the search space found by the genetic operators. GODZILLA also
+incorporates another hill-climbing technique called the <i>Simplex Search
+Method</i>. This method, which is not to be confused with the <i>Simplex
+Method</i> of linear programming, is described in Reklaitis et al (1983).
+<p>
+The field of evolutionary computation is expanding very quickly, and almost
+all communication occurs via the electronic Internet. The USENET group,
+<i>comp.ai.genetic</i>, is a very useful and important resource.
+<p>
+<hr>
+<a href="multipep.htm">Back to Title Page</a><br>
+<a href="basics.htm">Previous Section</a><br>
+<a href="results.htm">Next Section</a><br>
+<hr>
+
+</body>
+
+</html>
+

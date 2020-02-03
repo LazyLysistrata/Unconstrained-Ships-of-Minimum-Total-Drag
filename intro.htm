@@ -1,0 +1,226 @@
+<html>
+
+<head>
+<title>E. O. Tuck and L. Lazauskas</title>
+</head>
+
+<body bgcolor="#a3d3ff">
+
+<h2>1. INTRODUCTION</h2>
+<p>
+Consider first a class of monohull ships moving steadily ahead on a flat
+calm infinitely-deep sea. Fix the displacement, draft, speed, and hull
+shape. The length is then essentially the only variable allowed. At any
+given length, adjust the beam by uniform scaling of all offsets, so as to
+achieve the prescribed displacement; longer ships are thinner. Now vary
+the length until the total (viscous plus wave) drag
+R<SUB>t</SUB>=R<SUB>v</SUB>+R<SUB>w</SUB> is minimised.
+<p>
+The above simplified ship optimisation problem, with length as the only
+variable, usually possesses a non-trivial solution, i.e. a finite optimum
+length, for the following reason. Viscous drag R<SUB>v</SUB> is
+predominantly skin friction, which is proportional to surface area, and as
+a body of a given volume gets longer and thinner, its surface area
+increases. Hence viscous drag increases with length at fixed displacement.
+<p>
+On the other hand, for conventional ships at conventional speeds, wave
+resistance R<SUB>w</SUB> generally decreases as the ship length
+increases. Since we are holding the speed U fixed, as we increase the
+length L, we are decreasing the length-based Froude number
+F=U/sqrt(gL). At fixed displacement, and at most relatively low Froude
+numbers, wave resistance is a (rapidly) increasing function of Froude
+number, and therefore decreases with increasing length. There are wobbles
+in the graph of wave resistance versus Froude number, so this is not an
+absolute conclusion, but it does hold in most cases, and of course this
+advantage of long ships is very much part of the naval architectural art.
+<p>
+Since there are opposite trends with length in the two constituents of the
+total drag, there must be a minimum for their sum, at some non-trivial
+intermediate length. That length is generally somewhat larger than for
+conventional ships.
+<p>
+In fact, sometimes there is more than one local minimum in the graph of
+total drag versus length, and this phenomenon is discussed in more detail
+in the following section. There is often a delicate interplay between local
+and global optima, which makes for an optimisation process that is quite
+difficult to analyse. In order to deal with this problem, we use here a
+powerful general purpose technique, described later, called &quot;genetic
+algorithms&quot;.
+<p>
+In the present paper, we perform an exhaustive treatment of this
+optimisation problem for a family of monohull and multihull vessels,
+covering a very large range of speeds and displacements. We hold the hull
+shape, displacement and speed fixed, and allow the draft (and for
+multihulls, various other parameters) as well as the length to vary
+until the minimum total drag is achieved. We treat viscous drag as the
+sum of skin friction (estimated by the 1957 ITTC line) and a generally
+small but sometimes crucial form drag contribution which is estimated
+by an empirical formula. We use Michell's integral for the wave
+resistance, which is only accurate for thin ships. However, this is a
+more than usually good assumption for the class of extremely fine
+hulls that arise from this optimisation process.
+<p>
+When we treat multihull vessels, each separate hull is taken from the
+same shape family as the monohulls. For catamarans consisting of two
+identical side-by-side hulls, there is thus just one further parameter
+that participates in the optimisation, namely the lateral hull
+separation distance. There are some speed ranges where there is an
+optimal finite choice for this separation, and others where the best
+separation is infinite - that is, the optimum &quot;catamaran&quot; is
+actually two unconnected hulls. We find that, from the point of view of
+total drag (with no length restriction), a catamaran can never compete
+with a length-optimised monohull of the same total displacement. This is
+essentially because of the increased wetted surface area created by
+splitting the hull in two, which increases further the already dominant
+viscous drag component.
+<p>
+As the number of hulls increases, many more parameters are involved in
+the optimisation of multihull vessels, even within the constraint that
+all hulls have the same shape. For example, for laterally-symmetric
+trimarans there are a total of seven parameters; namely two drafts,
+two lengths, one ratio between side-hull and total displacement, one
+longitudinal and one lateral separation distance. The side-hull
+displacement ratio parameter is somewhat special, in that the trimaran
+reduces to a monohull when this ratio is near zero and to a catamaran
+when it is near unity. If that parameter is included in the optimisation
+process, a monohull results automatically whenever a length-optimised
+monohull is superior to a trimaran (which is always!), and similarly a
+catamaran would result if a catamaran was superior to a trimaran. Hence
+in order to confine attention to true trimarans, we use only a 6-parameter
+optimisation, then repeating this optimisation for a range of values of
+the displacement ratio. The results show that (strictly from the
+total-resistance point of view of the present paper) trimarans are
+also uncompetitive with length-optimised monohulls or catamarans.
+<p>
+When there are length (or other) restrictions, and hence (for
+shorter-than-optimal ships) a greater contribution of wave resistance to
+the total drag, multihulls can have less total drag than monohulls of the
+same length, because of the potential for favourable hull-hull
+cancellation of wave resistance. For example, in work to be reported
+elsewhere, we have examined a 3500 tonne vessel of length 160m designed
+to operate at 40 knots speed. In that case, the best catamaran has 10%
+less total drag than the best monohull of the same length, and there are
+indications that further improvements are possible with optimised
+trimarans.
+<p>
+The main purpose of the present study is to provide a benchmark, from
+which extended studies can follow. One class of such extensions
+obviously involves allowing the shape of the hull to vary. For the
+present study, we have used a very fine type of hull, appropriate for
+high-speed and sporting-type vessels, and there is a need to repeat the
+study with more commercial shapes of hull.
+<p>
+However, perhaps of greater importance is inclusion of further
+constraints. When the only quantities held fixed are speed and
+displacement, it is not surprising that the resulting ship proportions
+are somewhat (but not outrageously) unconventional. Further constraints,
+such as constraints on maximum length or minimum beam, arise inevitably
+from commercial, structural, safety, seakeeping, or sporting
+requirements. When these constraints are imposed, the ship proportions
+will return to the more conventional range, but at a price in terms of
+increased total drag. It is of value to know just how much of a price
+is being paid.
+<p>
+<h3>1.1 An illustrative example</h3>
+In the present section, we first give an example illustrating the
+character of the results obtained in the present study. Further results
+are presented in more generality and in nondimensional form later. For
+this example, we confine attention to a &quot;ship&quot; of one-tonne
+displacement, representative of a (large) rowing shell, and use
+dimensional units.
+<p>
+<center>
+<table border=12>
+<tr>
+   <td><IMG src="fig1_1.gif" ALIGN="TOP"></td>
+</tr>
+<tr>
+   <td><B>Fig. 1.1: Comparison of total resistance for two one tonne monohulls.</B></td>
+</tr>
+</table>
+</center>
+<p>
+Figure 1.1 shows two typical examples of graphs of total drag versus
+length (in metres) at a fixed speed, for such a vessel. For the present
+purpose, it is not essential how the drag is determined or scaled, but
+we should note that it does include an allowance for form drag, discussed
+later. The blue curve is at a fixed speed of 5.56 knots and the red
+curve at only a very slightly higher speed of 5.59 knots. In both cases,
+there are two prominent minima, i.e. two distinct (and remarkably
+different) lengths are locally favourable, and define &quot;best&quot; and
+&quot;second-best&quot; ships. At the lower speed, the longer ship (13.2
+metres length) is better than the shorter ship (9.8m), whereas at the
+higher speed, the shorter ship (9.6m) is superior to the longer ship
+(12.3m). Thus, as we vary the speed and other parameters, there may occur
+an interchange between two local optima, so that the optimum length may
+appear to change discontinuously. These changes can occur over a
+remarkably narrow range of speeds.
+<p>
+<center>
+<table border=12>
+<tr>
+   <td><IMG src="fig1_2.gif" ALIGN="TOP"></td>
+</tr>
+<tr>
+   <td><B>Fig. 1.2: Optimum length for a one tonne monohull</B></td>
+</tr>
+</table>
+</center>
+<p>
+This type of discontinuity in the optimum length is shown in Figure
+1.2, again taken from the family of one-tonne monohulls. This figure
+gives the optimum length in metres as a function of the speed in knots.
+The discontinuities indicated above occur only at relatively low speeds,
+notably at about 5.6 knots (where the change between the two curves of
+Figure 1.1 occurs) and 4.3 knots, with smaller discontinuities at even
+lower speeds.
+<p>
+At speeds between the discontinuities, the Froude number based on
+shiplength remains essentially constant, and examination of the
+variation of wave resistance with Froude number indicates that this
+constant value corresponds to a local minimum of wave resistance.
+What is happening as we increase the speed is that, in attempting to
+design for minimum total drag, we simultaneously increase the shiplength,
+in order to stay at that local minimum. This continues as long as
+possible while we increase the speed, and when it is no longer possible,
+the optimum ship suddenly decreases its length, so that the Froude number
+suddenly jumps to the next higher local minimum, avoiding the local
+maximum in between. This process is intuitively like changing gears!
+<p>
+The length variation in the example of Figure 1.2 is continuous for all
+speeds above 5.6 knots. However, as is discussed later, if form drag is
+neglected, there can also be an apparent high-speed discontinuity. It is
+important to note that, as indicated by Figure 1.1, there is no
+discontinuity in the actual total drag at these speeds, merely an
+interchange in the roles of &quot;best&quot; and &quot;second-best&quot;
+ships. At the speeds where the optimum length changes discontinuously, the
+residual total drag tends to reach a local maximum, where its rate of
+change with respect to speed changes discontinuously.
+<p>
+Although these discontinuities are of interest in their own right, they
+are not necessarily the most important feature of Figure 1.2. They depend
+on the fact that the wave resistance possesses minima, and these minima
+are to a certain extent magnified by the theoretical procedure (here
+Michell's integral) used to compute wave resistance. If more empirical
+means are used to estimate wave resistance, with the effect of smoothing
+out the humps and hollows in the wave resistance variation, there will be
+a consequent reduction in the size of the discontinuities. However, so long
+as there are at least two minima in the wave resistance curve, a
+discontinuity is inevitable, no matter what method is used to estimate
+wave resistance.
+<p>
+Above 5.6 knots, the optimum length of a one-tonne vessel varies smoothly,
+and it is unlikely that the optimum length is sensitive to the procedure
+for wave resistance computation. In fact, the range of speeds above that
+where discontinuous length changes occur is the one of greatest interest in
+practice; for example, it is the competitive speed range for rowing shells.
+<p>
+<hr>
+<a href="multipep.htm">Back to Title Page</a><br>
+<a href="basics.htm">Next Section</a><br>
+<hr>
+
+</body>
+
+</html>
+
